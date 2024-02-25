@@ -1,0 +1,31 @@
+{
+	"name": "0xplain",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "webpack",
+		"start": "webpack serve --open"
+	},
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@types/plotly.js": "^2.29.1",
+		"@types/plotly.js-dist-min": "^2.3.4",
+		"html-webpack-plugin": "^5.6.0",
+		"plotly.js-dist-min": "^2.29.1",
+		"process": "^0.11.10",
+		"stream-browserify": "^3.0.0",
+		"ts-loader": "^9.5.1",
+		"typescript": "^5.3.3",
+		"webpack": "^5.90.3",
+		"webpack-cli": "^5.1.4",
+		"webpack-dev-server": "^5.0.2"
+	},
+	"dependencies": {
+		"assert": "^2.1.0",
+		"buffer": "^6.0.3",
+		"plotly.js": "^2.29.1"
+	}
+}
