@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect } from 'react';
-import * as Plotly from 'plotly.js';
+import * as Plotly from 'plotly.js-dist-min';
+
 
 interface TvlsItem {
   date: number; // Unix timestamp

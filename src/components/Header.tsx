@@ -10,7 +10,7 @@ function header() {
         <div className="flex items-center space-x-2">
         <Image src="/logo.png" alt="Logo" width={40} height={40} />
           <div className="text-4xl">
-            <span>DataStori</span>
+            <span>0xPlain</span>
           </div>
         </div>
     </Link>

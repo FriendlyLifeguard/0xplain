@@ -66,28 +66,26 @@ async function fetchDataAndPlot() {
         fillcolor: 'rgba(31, 119, 180,0.3)',
     }];
 
-    const annotations = [{
-        x: '2023-05-16',
-        y: findTvlForDate('2023-05-16', tvlData),
-        text: 'Launch date',
-        showarrow: true,
-        arrowhead: 1,
-        ax: 0,
-        ay: -40,
-        bgcolor: 'lightyellow',
-        font: {size: 12},
-    },
-    {
-        x: '2023-12-10',
-        y: findTvlForDate('2023-12-10', tvlData),
-        text: 'Important news update caused a rally',
-        showarrow: true,
-        arrowhead: 1,
-        ax: 0,
-        ay: -40,
-        bgcolor: 'lightyellow',
-        font: {size: 12},
-    }];
+    const specialEvents = [
+        { date: '2023-05-16', text: 'Launch date' },
+        { date: '2023-12-10', text: 'Important news update <br> causing a rally' }
+    ];
+
+    const annotations = specialEvents.map(event => {
+        const yValue = findTvlForDate(event.date, tvlData);
+        return {
+            x: event.date,
+            y: yValue,
+            text: 'Launch date',
+            showarrow: true,
+            arrowhead: 2,
+            ax: 0,
+            ay: 30,
+            bgcolor: 'rgba(0,0,0,0)',  // Transparent background
+            borderwidth: 0,
+            font: {size: 16},
+        }
+    });
 
     const layout = {
         title: 'TVL Over Time: Nostra',
