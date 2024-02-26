@@ -1,10 +1,7 @@
 'use client'
 import React, { useState } from 'react';
-import Image from "next/image";
-import Link from "next/link";
-import PlotComponent, { Annotation } from "../../components/Plot";
+import PlotComponent, { Annotation } from '../../components/Plot';
 import Header from '../../components/Header'; // Import the Header component
-
 
 
 type Comment = {
@@ -12,10 +9,19 @@ type Comment = {
   text: string;
 };
 
-export default function CreateStoryPage() {
+type ChartOption = {
+  value: string;
+  label: string;
+};
+
+const CreateStoryPage = () => {
+  const [selectedChart, setSelectedChart] = useState<string>('');
   const [annotations, setAnnotations] = useState<Annotation[]>([]);
   const [comments, setComments] = useState<Comment[]>([]);
 
+  const handleChartChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedChart(e.target.value);
+  };
 
   const handleSubmitAnnotation = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,14 +53,50 @@ export default function CreateStoryPage() {
     setComments(current => [...current, newComment]);
   };
 
+  // Define chart options
+  const chartOptions: ChartOption[] = [
+    { value: '', label: 'Select a chart' },
+    { value: 'chart1', label: 'Chart 1' },
+    { value: 'chart2', label: 'Chart 2' },
+    { value: 'chart3', label: 'Chart 3' },
+  ];
+
+    // Empty chart placeholder component
+  const EmptyChartPlaceholder = () => {
+  const placeholderStyle = {
+    width: '100%',
+    height: '400px',
+    border: '1px dashed #ccc',
+    borderRadius: '5px',
+  };
+
+  return <div style={placeholderStyle}></div>;
+};
+
   return (
 
     <div className="container mx-auto p-8">
     {/* Header */}
     <Header />
-    
+
       <div className="container mx-auto p-8">
-        {/* Form to add annotations */}
+        {/* Dropdown Box */}
+        <select onChange={handleChartChange} value={selectedChart} className="mb-4">
+        {chartOptions.map(option => (
+            <option key={option.value} value={option.value}>{option.label}</option>
+          ))}
+        </select>
+
+        {/* Blank Canvas */}
+        <div className="canvas">
+          {selectedChart ? (
+              <PlotComponent userAnnotations={annotations} chartData={selectedChart} />
+            ) : (
+              <EmptyChartPlaceholder />
+            )}
+        </div>
+
+       {/* Form to add annotations */}
         <div className="mb-4">
           <h2 className="text-lg font-semibold mb-2">Add Annotation</h2>
           <form onSubmit={handleSubmitAnnotation} className="flex items-center">
@@ -63,9 +105,8 @@ export default function CreateStoryPage() {
             <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Annotation</button>
           </form>
         </div>
-        <PlotComponent userAnnotations={annotations} />
 
-  {/* Form to add comments */}
+      {/* Form to add comments */}
       <div className="mb-4">
           <h2 className="text-lg font-semibold mb-2">Add Comment</h2>
           <form onSubmit={handleSubmitComment} className="flex items-center">
@@ -88,3 +129,5 @@ export default function CreateStoryPage() {
     </div>
   );
 }
+
+export default CreateStoryPage;

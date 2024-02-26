@@ -1,4 +1,4 @@
-import * as Plotly from 'plotly.js';
+import * as Plotly from 'plotly.js-dist-min';
 
 // Import Plotly dynamically
 
