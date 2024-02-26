@@ -5,7 +5,7 @@ import Image from 'next/image';
 const PostComponent = ({ postId, title, author }) => {
   // Assuming postId is a prop to identify which post to navigate to
   return (
-    <Link href={`params.posts/${postId}`}>
+    <Link href={`posts/${postId}`} passHref>
       <div className="block">
         <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
           <div className="p-8">

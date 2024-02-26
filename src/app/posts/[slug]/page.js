@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 const PostDetailPage = () => {
   const router = useRouter();
-  const { postId } = router.query;
+  const { slug } = router.query;
 
   // Fetch post data based on postId or implement getStaticProps/getServerSideProps
   
