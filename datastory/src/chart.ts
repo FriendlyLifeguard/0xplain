@@ -47,7 +47,7 @@ async function fetchDataAndPlot() {
     const response = await fetch(apiUrl);
     const jsonData: ProtocolData = await response.json();
 
-    const tvlData = jsonData.chainTvls["Starknet-borrowed"].tvl;
+    const tvlData = jsonData.chainTvls["Starknet"].tvl;
     
     const dates = tvlData.map(item => new Date(item.date * 1000).toISOString().split('T')[0]);
     const tvls = tvlData.map(item => item.totalLiquidityUSD);
@@ -78,8 +78,8 @@ async function fetchDataAndPlot() {
         font: {size: 12},
     },
     {
-        x: '2024-01-17',
-        y: findTvlForDate('2024-01-17', tvlData),
+        x: '2023-12-10',
+        y: findTvlForDate('2023-12-10', tvlData),
         text: 'Important news update caused a rally',
         showarrow: true,
         arrowhead: 1,
