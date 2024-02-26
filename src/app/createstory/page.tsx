@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import PlotComponent, { Annotation } from "../../components/Plot";
+import Header from '../../components/Header'; // Import the Header component
+
 
 
 type Comment = {
@@ -15,7 +17,7 @@ export default function CreateStoryPage() {
   const [comments, setComments] = useState<Comment[]>([]);
 
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitAnnotation = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const date = (e.currentTarget.elements.namedItem('date') as HTMLInputElement).value;
     const text = (e.currentTarget.elements.namedItem('text') as HTMLInputElement).value;
@@ -46,27 +48,43 @@ export default function CreateStoryPage() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input type="date" name="date" required />
-        <input type="text" name="text" placeholder="Annotation text" required />
-        <button type="submit">Add Annotation</button>
-      </form>
-      <PlotComponent userAnnotations={annotations} />
 
-      {/* Form to add comments */}
-      <form onSubmit={handleSubmitComment}>
-        <input type="text" name="commentText" placeholder="Enter your comment" required />
-        <button type="submit">Add Comment</button>
-      </form>
+    <div className="container mx-auto p-8">
+    {/* Header */}
+    <Header />
+    
+      <div className="container mx-auto p-8">
+        {/* Form to add annotations */}
+        <div className="mb-4">
+          <h2 className="text-lg font-semibold mb-2">Add Annotation</h2>
+          <form onSubmit={handleSubmitAnnotation} className="flex items-center">
+            <input type="date" name="date" required className="mr-2 p-2 border border-gray-300 rounded" />
+            <input type="text" name="text" placeholder="Annotation text" required className="mr-2 p-2 border border-gray-300 rounded" />
+            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Annotation</button>
+          </form>
+        </div>
+        <PlotComponent userAnnotations={annotations} />
 
+  {/* Form to add comments */}
+      <div className="mb-4">
+          <h2 className="text-lg font-semibold mb-2">Add Comment</h2>
+          <form onSubmit={handleSubmitComment} className="flex items-center">
+            <input type="text" name="commentText" placeholder="Enter your comment" required className="mr-2 p-2 border border-gray-300 rounded" />
+            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Comment</button>
+          </form>
+        </div>
 
-      {/* List to display comments */}
-       {/* Render comments */}
-       {comments.map(comment => (
-        <div key={comment.id}>{comment.text}</div>
-      ))}
-
+        {/* List to display comments */}
+        {/* Render comments */}
+        <div>
+          <h2 className="text-lg font-semibold mb-2">Comments</h2>
+          {comments.map(comment => (
+            <div key={comment.id} className="bg-gray-100 p-4 mb-2 rounded">
+              <p className="text-gray-800">{comment.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
