@@ -3,10 +3,21 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: quick;
-  src: url(../public/quicksandLight.ttf);
+  font-family: ibm;
+  src: url(../public/IBMPlex.ttf);
+}
+
+@font-face {
+  font-family: ibmMedium;
+  src: url(../public/PlexMedium.ttf);
 }
 
 body {
-  font-family: 'quick', sans-serif
+  font-family: 'ibm', sans-serif;
+  background-color: #F8EDE3;
+}
+
+.plex-medium {
+  @apply font-sans;
+  font-family: 'ibmMedium', sans-serif
 }
