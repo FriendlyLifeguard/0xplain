@@ -57,8 +57,13 @@ async function fetchDataAndPlot() {
         x: dates,
         y: tvls,
         type: 'scatter',
-        mode: 'lines+markers',
-        marker: { size: 8 },
+        mode: 'lines',
+        fill: 'tozeroy',
+        line: {
+            color: 'rgb(31, 119, 180)',  // Example: blue line
+            width: 2,
+        },
+        fillcolor: 'rgba(31, 119, 180,0.3)',
     }];
 
     const annotations = [{
@@ -75,7 +80,7 @@ async function fetchDataAndPlot() {
     {
         x: '2024-01-17',
         y: findTvlForDate('2024-01-17', tvlData),
-        text: 'Immportant news update caused a rally',
+        text: 'Important news update caused a rally',
         showarrow: true,
         arrowhead: 1,
         ax: 0,
@@ -88,7 +93,15 @@ async function fetchDataAndPlot() {
         title: 'TVL Over Time: Nostra',
         xaxis: { title: 'Date' },
         yaxis: { title: 'Total Value Locked (USD)' },
-        // Example annotation - you might want to dynamically generate these
+        width: 800,
+        height: 600,
+        font: {
+            family: 'Arial, sans-serif',
+            size: 16,
+            color: '#7f7f7f'
+        },
+        plot_bgcolor: "rgba(242, 242, 242, 0.7)",  // Light grey background
+        paper_bgcolor: "rgba(242, 242, 242, 0.7)",
         annotations: annotations,
     };
 
