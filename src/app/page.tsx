@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link"
 import Header from "../components/Header"
@@ -19,6 +20,8 @@ const userAnnotations = [
 ];
 
 export default function Home() {
+
+
   return (
     <>
     <Header/>
@@ -212,10 +215,13 @@ export default function Home() {
   <div className="w-full flex flex-col items-center justify-center mt-10">
     <div className="text-4xl font-bold mb-4">Posts</div>
     <div className="mb-6"> {/* Add bottom margin */}
+    <Link href={'/posts/${postId}'}>
       <PostComponent postId="1" title="Nostr TVL" author="0xPlain" />
+    </Link>
     </div>
-    <div className="mb-6"> {/* Add bottom margin */}
+    <div className="mb-6">
       <PostComponent postId="2" title="Something TVL" author="0xPlain" />
+
     </div>
     <div className="mb-6"> {/* Add bottom margin */}
       <PostComponent postId="3" title="Else TVL" author="0xPlain" />

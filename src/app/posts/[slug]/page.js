@@ -1,11 +1,7 @@
-import { useRouter } from 'next/router';
+
 
 const PostDetailPage = () => {
-  const router = useRouter();
-  const { slug } = router.query;
-
   // Fetch post data based on postId or implement getStaticProps/getServerSideProps
-  
   return (
     <div className="flex flex-col items-center py-8">
     <h1 className="text-4xl font-bold mb-20">Starknet Current TVL</h1>

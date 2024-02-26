@@ -40,6 +40,12 @@ export interface Annotation {
   font: { size: number };
 }
 
+export interface PostComponent {
+  postId: string; 
+  title: string;
+  author: string; 
+}
+
 interface PlotComponentProps {
   userAnnotations: Annotation[];
 }
