@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: MONT;
-  src: url(../public/montfont.otf);
+  font-family: quick;
+  src: url(../public/quicksandLight.ttf);
+}
+
+body {
+  font-family: 'quick', sans-serif
 }
