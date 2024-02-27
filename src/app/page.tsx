@@ -232,15 +232,36 @@ export default function Home() {
     </Link>
     </div>
     )}
+
+    <Link href={`posts/2`}>
     <div className="mb-6">
-      <ThumbnailComponent postId="2" title="Something TVL" author="0xPlain" />
-
+      <div className="block">
+        <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+          <div className="p-8">
+            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">BTC CHART</div>
+            <div className="text-sm text-gray-600 ml-auto">Author: 0xPlain </div>
+            <div className="mt-4"></div>
+              <img src="/Static1.png" alt="Chart" width={600} height={400} style={{ width: '100%', height: 'auto' }} />
+          </div>
+        </div>
+      </div>
     </div>
+
+    </Link>
     <div className="mb-6"> 
-      <ThumbnailComponent postId="3" title="Else TVL" author="0xPlain" />
+    <div className="block">
+        <div className="max-w-md mx-auto bg-#EED6C4 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+          <div className="p-8">
+            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Terra USD CHART</div>
+            <div className="text-sm text-gray-600 ml-auto">Author: 0xPlain </div>
+            <div className="mt-4"></div>
+              <img src="/Static2.png" alt="Chart" width={600} height={400} style={{ width: '100%', height: 'auto' }} />
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
+  
 </div>
 
     </>
