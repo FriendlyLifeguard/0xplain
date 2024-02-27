@@ -24,7 +24,6 @@ const CreateStoryPage = () => {
 
     setAnnotations([]); // Clear annotations when chart changes
     setSelectedChartLabel(e.target.options[e.target.selectedIndex].text); // Set the selected chart label
-
   };
 
   const handleSubmitAnnotation = (e: React.FormEvent<HTMLFormElement>) => {
@@ -75,14 +74,17 @@ const CreateStoryPage = () => {
     <div className="container mx-auto p-8">
       <Header />
 
-      <div className="container mx-auto p-8">
-        <select onChange={handleChartChange} value={selectedChart} className="mb-4">
-          {chartOptions.map(option => (
-            <option key={option.value} value={option.value}>{option.label}</option>
-          ))}
+      <div className="flex flex-col items-center mt-8">
+        <div className="w-full flex justify-center">
+          <div className="flex-grow" style={{ maxWidth: '300px' }}> {/* Adjust max-width as needed */}          <select onChange={handleChartChange} value={selectedChart} className="mb-4">
+            {chartOptions.map(option => (
+              <option key={option.value} value={option.value}>{option.label}</option>
+            ))}
         </select>
+        </div>
+        </div>
 
-        <div className="canvas">
+        <div className="canvas" style={{ maxWidth: '80%', margin: 'auto' }}>
           {selectedChart ? (
             <PlotComponent userAnnotations={annotations} chartData={chartOptions.find(option => option.value === selectedChart)?.data} selectedChartLabel={selectedChartLabel}/>
             ) : (
