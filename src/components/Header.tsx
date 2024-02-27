@@ -17,6 +17,16 @@ function header() {
         </div>
     </Link>
 
+    {/* Browse button in the center */}
+    <div>
+      <Link href="/browse">
+        <div className="text-xl hover:underline hover:text-blue-500 transition-colors duration-300 ease-in-out">
+          Browse
+        </div>
+      </Link>
+    </div>
+
+
     <div className="flex items-center space-x-4">
           {/* Avatar Icon */}
           <div className="relative">
