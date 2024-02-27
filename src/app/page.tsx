@@ -250,7 +250,7 @@ export default function Home() {
     </Link>
     <div className="mb-6"> 
     <div className="block">
-        <div className="max-w-md mx-auto bg-#EED6C4 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+        <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
           <div className="p-8">
             <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Terra USD CHART</div>
             <div className="text-sm text-gray-600 ml-auto">Author: 0xPlain </div>
@@ -261,7 +261,7 @@ export default function Home() {
       </div>
     </div>
   </div>
-  
+
 </div>
 
     </>
