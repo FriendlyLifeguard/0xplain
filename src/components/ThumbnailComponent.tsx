@@ -17,7 +17,7 @@ const ThumbnailComponent = ({ postId, title, author }) => {
         <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl relative group">
           <div className="relative group">
             <div className="absolute -top-4 left-4 z-20">
-              <img src="/path/to/profile-image.jpeg" alt="Profile" className="w-12 h-12 rounded-full border-2 border-white" />
+              <img src="/monkey.png" alt="Profile" className="w-12 h-12 rounded-full border-2 border-white" />
             </div>
           </div>
           <div className="p-8 pt-12">
