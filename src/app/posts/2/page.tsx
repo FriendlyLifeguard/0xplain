@@ -40,6 +40,7 @@ const PostPage = () => {
   return (
   
     <div>
+      <Header/>
       <h1 className="text-2xl font-bold text-left ml-4">{post.title}</h1>
       <h2 className="text-sm text-left ml-4 text-gray-600">By {post.author}</h2>
       <div>
@@ -51,7 +52,7 @@ const PostPage = () => {
       <div className="mt-8">
         <h2 className="text-lg font-semibold text-center">Comments on the Graph</h2>
         <div className="max-w-md mx-auto mt-4">
-        <form onSubmit={handleSubmitComment} className="relative">
+          <form onSubmit={handleSubmitComment} className="relative">
         <textarea
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}

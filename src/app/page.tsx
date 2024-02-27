@@ -246,8 +246,9 @@ export default function Home() {
         </div>
       </div>
     </div>
-
     </Link>
+
+    <Link href={'posts/3'}>
     <div className="mb-6"> 
     <div className="block">
         <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
@@ -260,7 +261,9 @@ export default function Home() {
         </div>
       </div>
     </div>
+    </Link>
   </div>
+  
 
 </div>
 
