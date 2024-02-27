@@ -34,9 +34,10 @@ interface PlotComponentProps {
   userAnnotations: Annotation[];
   chartData: any;
   selectedChartLabel: string;
+  onPlotClick: (data: any) => void; // Add this line
 }
 
-const PlotComponent = ( {userAnnotations = [], chartData, selectedChartLabel}: PlotComponentProps) => {
+const PlotComponent = ( {userAnnotations = [], chartData, selectedChartLabel, onPlotClick}: PlotComponentProps) => {
 
   const plotDivRef = useRef<HTMLDivElement>(null);
 
@@ -93,6 +94,11 @@ const PlotComponent = ( {userAnnotations = [], chartData, selectedChartLabel}: P
       ...userAnnotations,
     ];
 
+    const dynamicAnnotations = userAnnotations.map(annotation => ({
+      ...annotation,
+      y: findTvlForDate(annotation.x, tvlData) || 0, // Fallback to 0 if not found
+    }));
+
       const layout = {
         title: selectedChartLabel,
         xaxis: { title: 'Date' },
@@ -106,11 +112,17 @@ const PlotComponent = ( {userAnnotations = [], chartData, selectedChartLabel}: P
         },
         plot_bgcolor: "rgba(242, 242, 242, 0.7)",  // Light grey background
         paper_bgcolor: "rgba(242, 242, 242, 0.7)",
-        annotations: annotations,
+        annotations: dynamicAnnotations,
     };
 
     if (plotDivRef.current) {
       Plotly.newPlot(plotDivRef.current, plotData, layout);
+      // Attach the click event listener
+      plotDivRef.current?.on('plotly_click', (data: any) => {
+        if (onPlotClick) {
+          onPlotClick(data);
+         } // Call the passed in onPlotClick function with the click event data
+      });
     }
       } catch (error) {
         console.error('Error fetching or plotting data:', error);

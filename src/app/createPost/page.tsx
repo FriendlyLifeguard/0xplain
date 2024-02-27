@@ -62,6 +62,35 @@ const CreateStoryPage = () => {
     }
   };
 
+  // New function to handle plot click events
+  const handlePlotClick = (data: any) => {
+    if (data.points && data.points.length > 0) {
+      const xValue = data.points[0].x;
+      const yValue = data.points[0].y;
+
+      console.log(`Clicked on x: ${xValue}, y: ${yValue}`);
+
+      const text = prompt("Enter annotation text:");
+      if (text) {
+        const newAnnotation: Annotation = {
+          x: xValue,
+          y: yValue,
+          text: text,
+          showarrow: true,
+          arrowhead: 1,
+          ax: 0,
+          ay: -40,
+          bgcolor: 'lightyellow',
+          font: { size: 12 }
+        };
+
+        setAnnotations(annotations => [...annotations, newAnnotation]);
+      } 
+    } else {
+      console.error('No data points found');
+    }
+  };
+
   // Define chart options
   const chartOptions: ChartOption[] = [
     { value: '', label: 'Select a chart', data: null },
@@ -86,7 +115,9 @@ const CreateStoryPage = () => {
 
         <div className="canvas" style={{ maxWidth: '80%', margin: 'auto' }}>
           {selectedChart ? (
-            <PlotComponent userAnnotations={annotations} chartData={chartOptions.find(option => option.value === selectedChart)?.data} selectedChartLabel={selectedChartLabel}/>
+            <PlotComponent userAnnotations={annotations} chartData={chartOptions.find(option => option.value === selectedChart)?.data} 
+            selectedChartLabel={selectedChartLabel} onPlotClick={handlePlotClick}
+            />
             ) : (
             <div style={{ width: '100%', height: '400px', border: '1px dashed #ccc', borderRadius: '5px' }}></div>
           )}
