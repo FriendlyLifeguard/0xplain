@@ -4,18 +4,26 @@ import PlotComponent from '../../components/Plot';
 import Header from '../../components/Header';
 import Annotation from '../../interfaces/PlotInterface';
 import * as Plotly from 'plotly.js-dist-min'; // Make sure to import Plotly
+import {useRouter} from "next/navigation"
 
 type ChartOption = {
   value: string;
   label: string;
+  data: any; 
 };
 
 const CreateStoryPage = () => {
   const [selectedChart, setSelectedChart] = useState<string>('');
   const [annotations, setAnnotations] = useState<Annotation[]>([]);
+  const [selectedChartLabel, setSelectedChartLabel] = useState<string>('');
+
+  const router = useRouter();
 
   const handleChartChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedChart(e.target.value);
+    setAnnotations([]); // Clear annotations when chart changes
+    setSelectedChartLabel(e.target.options[e.target.selectedIndex].text); // Set the selected chart label
+
   };
 
   const handleSubmitAnnotation = (e: React.FormEvent<HTMLFormElement>) => {
@@ -44,6 +52,9 @@ const CreateStoryPage = () => {
         .then((dataUrl) => {
 
           localStorage.setItem('chartImageData', dataUrl);
+          localStorage.setItem('annotationSubmitted', JSON.stringify({ submitted: true }));
+
+          router.push('/'); 
         })
         .catch(function(error) {
           console.error('Error generating the plot image:', error);
@@ -53,10 +64,10 @@ const CreateStoryPage = () => {
 
   // Define chart options
   const chartOptions: ChartOption[] = [
-    { value: '', label: 'Select a chart' },
-    { value: 'chart1', label: 'Chart 1' },
-    { value: 'chart2', label: 'Chart 2' },
-    { value: 'chart3', label: 'Chart 3' },
+    { value: '', label: 'Select a chart', data: null },
+    { value: 'chart1', label: 'Nostra TVL', data: { apiUrl: 'https://api.llama.fi/protocol/nostra' } },
+    { value: 'chart2', label: 'ZKLend TVL', data: { apiUrl: 'https://api.llama.fi/protocol/zklend' } },
+    { value: 'chart3', label: 'Ekubo TVL', data: { apiUrl: 'https://api.llama.fi/protocol/ekubo' } },
   ];
 
   return (
@@ -72,8 +83,8 @@ const CreateStoryPage = () => {
 
         <div className="canvas">
           {selectedChart ? (
-            <PlotComponent userAnnotations={annotations} chartData={selectedChart} />
-          ) : (
+            <PlotComponent userAnnotations={annotations} chartData={chartOptions.find(option => option.value === selectedChart)?.data} selectedChartLabel={selectedChartLabel}/>
+            ) : (
             <div style={{ width: '100%', height: '400px', border: '1px dashed #ccc', borderRadius: '5px' }}></div>
           )}
         </div>
@@ -85,7 +96,6 @@ const CreateStoryPage = () => {
             <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Annotation</button>
           </form>
         </div>
-
         <button onClick={handleExport} className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Submit</button>
       </div>
     </div>

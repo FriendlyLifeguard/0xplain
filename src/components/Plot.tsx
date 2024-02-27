@@ -32,15 +32,19 @@ interface ProtocolData {
 
 interface PlotComponentProps {
   userAnnotations: Annotation[];
+  chartData: any;
+  selectedChartLabel: string;
 }
 
-const PlotComponent = ( {userAnnotations = []}: PlotComponentProps) => {
+const PlotComponent = ( {userAnnotations = [], chartData, selectedChartLabel}: PlotComponentProps) => {
 
   const plotDivRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!chartData) return;
+
     async function fetchDataAndPlot() {
-      const apiUrl = 'https://api.llama.fi/protocol/nostra';
+      const apiUrl =  chartData.apiUrl;
 
       try {
         const response = await fetch(apiUrl);

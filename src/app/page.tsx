@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link"
 import Header from "../components/Header"
 import ThumbnailComponent from "../components/ThumbnailComponent";
+import React, { useState, useEffect } from 'react';
 
 const userAnnotations = [
   {
@@ -20,6 +21,17 @@ const userAnnotations = [
 ];
 
 export default function Home() {
+
+  const [annotationSubmitted, setAnnotationSubmitted] = useState(false);
+
+  useEffect(() => {
+    // Check local storage for submission status
+    const submissionStatus = localStorage.getItem('annotationSubmitted');
+    if (submissionStatus) {
+      const { submitted } = JSON.parse(submissionStatus);
+      setAnnotationSubmitted(submitted);
+    }
+  }, []);
 
 
   return (
@@ -213,11 +225,13 @@ export default function Home() {
 
   <div className="w-full flex flex-col items-center justify-center mt-10">
     <div className="text-4xl font-bold mb-4">Posts</div>
-    <div className="mb-6"> {/* Add bottom margin */}
+    {annotationSubmitted && (
+    <div className="mb-6"> 
     <Link href={'/posts/${postId}'}>
       <ThumbnailComponent postId="1" title="Nostr TVL" author="0xPlain" />
     </Link>
     </div>
+    )}
     <div className="mb-6">
       <ThumbnailComponent postId="2" title="Something TVL" author="0xPlain" />
 
