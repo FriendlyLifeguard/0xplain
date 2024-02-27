@@ -54,137 +54,115 @@ export default function Home() {
 
 
 <div className='flex flex-col items-center h-screen mt-20'>
-  {/* Container for the three columns */}
+  {/* Container for the three columns, ensuring they are in a single row */}
   <div className="flex w-full justify-around">
     {/* Column 1 */}
     <div className="flex flex-col items-start ml-10">
       <div className="mt-5">
         <div className="text-2xl font-bold"> &#128640; Trending TVL </div>
       </div>
-      <div className="mt-5">
-        <div className="flex flex-row items-center">
-          <div className="flex flex-col items-start">
-            <div className="text-1xl">Starknet</div>
-            <span className="text-green-500">↑ 6.8%</span>
-          </div>
-          <div className="border-b border-r border-t shadow-lg rounded-lg">
-            {/* Ensure Image component is correctly imported for your setup */}
-            <Image src="/starknetPrice.svg" alt="starknet" width={150} height={150} />
-          </div>
+      {/* Adjusted Flexbox Container for Starknet */}
+      <div className="mt-5 flex flex-row items-center justify-start">
+        <div className="w-32"> {/* Fixed width for text container */}
+          <div className="text-1xl">Starknet</div>
+          <span className="text-green-500">↑ 6.8%</span>
+        </div>
+        <div className="border-b border-r border-t shadow-lg rounded-lg flex-shrink-0">
+          <Image src="/starknetPrice.svg" alt="starknet" width={150} height={150} />
         </div>
       </div>
-      {/* Repeat for Ethereum and Solana */}
-      <div className="mt-5">
-        <div className="flex flex-row items-center">
-          <div className="flex flex-col items-start">
-            <div className="text-1xl">Starknet</div>
-            <span className="text-green-500">↑ 6.8%</span>
-          </div>
-          <div className="border-b border-r border-t shadow-lg rounded-lg">
-            {/* Ensure Image component is correctly imported for your setup */}
-            <Image src="/starknetPrice.svg" alt="starknet" width={150} height={150} />
-          </div>
+      {/* Adjusted Flexbox Container for Ethereum */}
+      <div className="mt-5 flex flex-row items-center justify-start">
+        <div className="w-32">
+          <div className="text-1xl">Ethereum</div>
+          <span className="text-green-500">↑ 5%</span>
+        </div>
+        <div className="border-b border-r border-t shadow-lg rounded-lg flex-shrink-0">
+          <Image src="/ethereumPrice.svg" alt="ethereum" width={150} height={150} />
         </div>
       </div>
-      <div className="mt-5">
-        <div className="flex flex-row items-center">
-          <div className="flex flex-col items-start">
-            <div className="text-1xl">Starknet</div>
-            <span className="text-green-500">↑ 6.8%</span>
-          </div>
-          <div className="border-b border-r border-t shadow-lg rounded-lg">
-            {/* Ensure Image component is correctly imported for your setup */}
-            <Image src="/starknetPrice.svg" alt="starknet" width={150} height={150} />
-          </div>
+      {/* Adjusted Flexbox Container for Solana */}
+      <div className="mt-5 flex flex-row items-center justify-start">
+        <div className="w-32">
+          <div className="text-1xl">Solana</div>
+          <span className="text-red-500">↓ 2.3%</span>
+        </div>
+        <div className="border-b border-r border-t shadow-lg rounded-lg flex-shrink-0">
+          <Image src="/solanaPrice.svg" alt="solana" width={150} height={150} />
         </div>
       </div>
     </div>
 
+    {/* Column 2 */}
+    <div className="flex flex-col items-start ml-10">
+      <div className="mt-5">
+        <div className="text-2xl font-bold"> &#128640; Daily Volume </div>
+      </div>
+      {/* Adjusted Flexbox Container for Starknet */}
+      <div className="mt-5 flex flex-row items-center justify-start">
+        <div className="w-32"> {/* Fixed width for text container */}
+          <div className="text-1xl">Starknet</div>
+          <span className="text-green-500">↑ 6.8%</span>
+        </div>
+        <div className="border-b border-r border-t shadow-lg rounded-lg flex-shrink-0">
+          <Image src="/starknetPrice.svg" alt="starknet" width={150} height={150} />
+        </div>
+      </div>
+      {/* Adjusted Flexbox Container for Ethereum */}
+      <div className="mt-5 flex flex-row items-center justify-start">
+        <div className="w-32">
+          <div className="text-1xl">Ethereum</div>
+          <span className="text-green-500">↑ 5%</span>
+        </div>
+        <div className="border-b border-r border-t shadow-lg rounded-lg flex-shrink-0">
+          <Image src="/ethereumPrice.svg" alt="ethereum" width={150} height={150} />
+        </div>
+      </div>
+      {/* Adjusted Flexbox Container for Solana */}
+      <div className="mt-5 flex flex-row items-center justify-start">
+        <div className="w-32">
+          <div className="text-1xl">Solana</div>
+          <span className="text-red-500">↓ 2.3%</span>
+        </div>
+        <div className="border-b border-r border-t shadow-lg rounded-lg flex-shrink-0">
+          <Image src="/solanaPrice.svg" alt="solana" width={150} height={150} />
+        </div>
+      </div>
+    </div>
 
-
+    {/* Column 3 */}
     <div className="flex flex-col items-start ml-10">
       <div className="mt-5">
         <div className="text-2xl font-bold"> &#128640; Top Volume </div>
       </div>
-      <div className="mt-5">
-        <div className="flex flex-row items-center">
-          <div className="flex flex-col items-start">
-            <div className="text-1xl">Starknet</div>
-            <span className="text-green-500">↑ 6.8%</span>
-          </div>
-          <div className="border-b border-r border-t shadow-lg rounded-lg">
-            {/* Ensure Image component is correctly imported for your setup */}
-            <Image src="/starknetPrice.svg" alt="starknet" width={150} height={150} />
-          </div>
+      {/* Adjusted Flexbox Container for Starknet */}
+      <div className="mt-5 flex flex-row items-center justify-start">
+        <div className="w-32"> {/* Fixed width for text container */}
+          <div className="text-1xl">Starknet</div>
+          <span className="text-green-500">↑ 6.8%</span>
+        </div>
+        <div className="border-b border-r border-t shadow-lg rounded-lg flex-shrink-0">
+          <Image src="/starknetPrice.svg" alt="starknet" width={150} height={150} />
         </div>
       </div>
-      {/* Repeat for Ethereum and Solana */}
-      <div className="mt-5">
-        <div className="flex flex-row items-center">
-          <div className="flex flex-col items-start">
-            <div className="text-1xl">Starknet</div>
-            <span className="text-green-500">↑ 6.8%</span>
-          </div>
-          <div className="border-b border-r border-t shadow-lg rounded-lg">
-            {/* Ensure Image component is correctly imported for your setup */}
-            <Image src="/starknetPrice.svg" alt="starknet" width={150} height={150} />
-          </div>
+      {/* Adjusted Flexbox Container for Ethereum */}
+      <div className="mt-5 flex flex-row items-center justify-start">
+        <div className="w-32">
+          <div className="text-1xl">Ethereum</div>
+          <span className="text-green-500">↑ 5%</span>
+        </div>
+        <div className="border-b border-r border-t shadow-lg rounded-lg flex-shrink-0">
+          <Image src="/ethereumPrice.svg" alt="ethereum" width={150} height={150} />
         </div>
       </div>
-      <div className="mt-5">
-        <div className="flex flex-row items-center">
-          <div className="flex flex-col items-start">
-            <div className="text-1xl">Starknet</div>
-            <span className="text-green-500">↑ 6.8%</span>
-          </div>
-          <div className="border-b border-r border-t shadow-lg rounded-lg">
-            {/* Ensure Image component is correctly imported for your setup */}
-            <Image src="/starknetPrice.svg" alt="starknet" width={150} height={150} />
-          </div>
+      {/* Adjusted Flexbox Container for Solana */}
+      <div className="mt-5 flex flex-row items-center justify-start">
+        <div className="w-32">
+          <div className="text-1xl">Solana</div>
+          <span className="text-red-500">↓ 2.3%</span>
         </div>
-      </div>
-    </div>
-    {/* Column 3 */}
-    {/* Duplicate the structure of Column 1 with different content as needed */}
-    <div className="flex flex-col items-start ml-10">
-      <div className="mt-5">
-        <div className="text-2xl font-bold"> &#128640; 1d Change </div>
-      </div>
-      <div className="mt-5">
-        <div className="flex flex-row items-center">
-          <div className="flex flex-col items-start">
-            <div className="text-1xl">Starknet</div>
-            <span className="text-green-500">↑ 6.8%</span>
-          </div>
-          <div className="border-b border-r border-t shadow-lg rounded-lg">
-            {/* Ensure Image component is correctly imported for your setup */}
-            <Image src="/starknetPrice.svg" alt="starknet" width={150} height={150} />
-          </div>
-        </div>
-      </div>
-      {/* Repeat for Ethereum and Solana */}
-      <div className="mt-5">
-        <div className="flex flex-row items-center">
-          <div className="flex flex-col items-start">
-            <div className="text-1xl">Starknet</div>
-            <span className="text-green-500">↑ 6.8%</span>
-          </div>
-          <div className="border-b border-r border-t shadow-lg rounded-lg">
-            {/* Ensure Image component is correctly imported for your setup */}
-            <Image src="/starknetPrice.svg" alt="starknet" width={150} height={150} />
-          </div>
-        </div>
-      </div>
-      <div className="mt-5">
-        <div className="flex flex-row items-center">
-          <div className="flex flex-col items-start">
-            <div className="text-1xl">Starknet</div>
-            <span className="text-green-500">↑ 6.8%</span>
-          </div>
-          <div className="border-b border-r border-t shadow-lg rounded-lg">
-            {/* Ensure Image component is correctly imported for your setup */}
-            <Image src="/starknetPrice.svg" alt="starknet" width={150} height={150} />
-          </div>
+        <div className="border-b border-r border-t shadow-lg rounded-lg flex-shrink-0">
+          <Image src="/solanaPrice.svg" alt="solana" width={150} height={150} />
         </div>
       </div>
     </div>

@@ -16,8 +16,7 @@ const CreateStoryPage = () => {
   const [selectedChart, setSelectedChart] = useState<string>('');
   const [annotations, setAnnotations] = useState<Annotation[]>([]);
   const [selectedChartLabel, setSelectedChartLabel] = useState<string>('');
-  const [selectedProject, setSelectedProject] = useState('');
-  const [selectedMetric, setSelectedMetric] = useState('');
+
 
   const router = useRouter();
 
