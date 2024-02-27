@@ -4,6 +4,7 @@ import PlotComponent from '../../components/Plot';
 import Header from '../../components/Header';
 import Annotation from '../../interfaces/PlotInterface';
 import * as Plotly from 'plotly.js-dist-min'; // Make sure to import Plotly
+import {useRouter} from "next/navigation"
 
 type ChartOption = {
   value: string;
@@ -16,9 +17,11 @@ const CreateStoryPage = () => {
   const [annotations, setAnnotations] = useState<Annotation[]>([]);
   const [selectedChartLabel, setSelectedChartLabel] = useState<string>('');
 
+  const router = useRouter();
 
   const handleChartChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedChart(e.target.value);
+
     setAnnotations([]); // Clear annotations when chart changes
     setSelectedChartLabel(e.target.options[e.target.selectedIndex].text); // Set the selected chart label
 
@@ -50,6 +53,9 @@ const CreateStoryPage = () => {
         .then((dataUrl) => {
 
           localStorage.setItem('chartImageData', dataUrl);
+          localStorage.setItem('annotationSubmitted', JSON.stringify({ submitted: true }));
+
+          router.push('/'); 
         })
         .catch(function(error) {
           console.error('Error generating the plot image:', error);
@@ -91,7 +97,6 @@ const CreateStoryPage = () => {
             <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Annotation</button>
           </form>
         </div>
-
         <button onClick={handleExport} className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Submit</button>
       </div>
     </div>

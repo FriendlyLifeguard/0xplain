@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link"
 import Header from "../components/Header"
 import ThumbnailComponent from "../components/ThumbnailComponent";
+import React, { useState, useEffect } from 'react';
 
 const userAnnotations = [
   {
@@ -20,6 +21,17 @@ const userAnnotations = [
 ];
 
 export default function Home() {
+
+  const [annotationSubmitted, setAnnotationSubmitted] = useState(false);
+
+  useEffect(() => {
+    // Check local storage for submission status
+    const submissionStatus = localStorage.getItem('annotationSubmitted');
+    if (submissionStatus) {
+      const { submitted } = JSON.parse(submissionStatus);
+      setAnnotationSubmitted(submitted);
+    }
+  }, []);
 
 
   return (
@@ -213,20 +225,43 @@ export default function Home() {
 
   <div className="w-full flex flex-col items-center justify-center mt-10">
     <div className="text-4xl font-bold mb-4">Posts</div>
-    <div className="mb-6"> {/* Add bottom margin */}
+    {annotationSubmitted && (
+    <div className="mb-6"> 
     <Link href={'/posts/${postId}'}>
       <ThumbnailComponent postId="1" title="Nostr TVL" author="0xPlain" />
     </Link>
     </div>
+    )}
+
+    <Link href={`posts/2`}>
     <div className="mb-6">
-      <ThumbnailComponent postId="2" title="Something TVL" author="0xPlain" />
-
+      <div className="block">
+        <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+          <div className="p-8">
+            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">BTC CHART</div>
+            <div className="text-sm text-gray-600 ml-auto">Author: 0xPlain </div>
+            <div className="mt-4"></div>
+              <img src="/Static1.png" alt="Chart" width={600} height={400} style={{ width: '100%', height: 'auto' }} />
+          </div>
+        </div>
+      </div>
     </div>
+
+    </Link>
     <div className="mb-6"> 
-      <ThumbnailComponent postId="3" title="Else TVL" author="0xPlain" />
+    <div className="block">
+        <div className="max-w-md mx-auto bg-#EED6C4 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+          <div className="p-8">
+            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Terra USD CHART</div>
+            <div className="text-sm text-gray-600 ml-auto">Author: 0xPlain </div>
+            <div className="mt-4"></div>
+              <img src="/Static2.png" alt="Chart" width={600} height={400} style={{ width: '100%', height: 'auto' }} />
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
+  
 </div>
 
     </>

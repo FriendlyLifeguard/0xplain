@@ -41,7 +41,8 @@ const PlotComponent = ( {userAnnotations = [], chartData, selectedChartLabel}: P
   const plotDivRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!chartData) return; // If chartData is not provided, do nothing
+
+    if (!chartData) return;
 
     async function fetchDataAndPlot() {
       const apiUrl =  chartData.apiUrl;

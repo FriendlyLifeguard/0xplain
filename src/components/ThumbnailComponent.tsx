@@ -1,9 +1,19 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import react, { useState, useEffect } from 'react';
 
 
 const ThumbnailComponent = ({ postId, title, author }) => {
-  // Assuming postId is a prop to identify which post to navigate to
+  const [imageUrl, setImageUrl] = useState('/starknet1.jpeg'); // Default image
+
+  useEffect(() => {
+    const chartImageData = localStorage.getItem('chartImageData');
+    if (chartImageData) {
+      setImageUrl(chartImageData);
+    }
+  }, []);
+
+
   return (
     <Link href={`posts/${postId}`}>
       <div className="block">
@@ -11,8 +21,8 @@ const ThumbnailComponent = ({ postId, title, author }) => {
           <div className="p-8">
             <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{title}</div>
             <div className="text-sm text-gray-600 ml-auto">Author: {author}</div>
-            {/* Placeholder for the graph or image */}
-            <Image src="/starknet1.jpeg" alt="Placeholder" width={600} height={400} />
+            <div className="mt-4"></div>
+              <img src={imageUrl} alt="Chart" width={600} height={400} style={{ width: '100%', height: 'auto' }} />
           </div>
         </div>
       </div>
