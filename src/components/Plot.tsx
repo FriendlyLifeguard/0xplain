@@ -41,7 +41,11 @@ const PlotComponent = ( {userAnnotations = [], chartData, selectedChartLabel}: P
   const plotDivRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+<<<<<<< HEAD
     if (!chartData) return;
+=======
+    if (!chartData) return; // If chartData is not provided, do nothing
+>>>>>>> refs/remotes/origin/main
 
     async function fetchDataAndPlot() {
       const apiUrl =  chartData.apiUrl;
@@ -93,7 +97,7 @@ const PlotComponent = ( {userAnnotations = [], chartData, selectedChartLabel}: P
     ];
 
       const layout = {
-        title: 'TVL Over Time: Nostra',
+        title: selectedChartLabel,
         xaxis: { title: 'Date' },
         yaxis: { title: 'Total Value Locked (USD)' },
         width: 800,
@@ -117,7 +121,7 @@ const PlotComponent = ( {userAnnotations = [], chartData, selectedChartLabel}: P
     }
 
     fetchDataAndPlot();
-  }, [userAnnotations]);
+  }, [userAnnotations, chartData, selectedChartLabel]);
 
   function findTvlForDate(targetDate: string, tvlData: TvlsItem[]): number | undefined {
     const targetTimestamp = new Date(targetDate).getTime() / 1000;

@@ -9,6 +9,7 @@ import {useRouter} from "next/navigation"
 type ChartOption = {
   value: string;
   label: string;
+  data: any; // Data or configuration for the chart
   data: any; 
 };
 
@@ -17,10 +18,15 @@ const CreateStoryPage = () => {
   const [annotations, setAnnotations] = useState<Annotation[]>([]);
   const [selectedChartLabel, setSelectedChartLabel] = useState<string>('');
 
+  const [selectedChartLabel, setSelectedChartLabel] = useState<string>('');
+
   const router = useRouter();
 
   const handleChartChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedChart(e.target.value);
+    setAnnotations([]); // Clear annotations when chart changes
+    setSelectedChartLabel(e.target.options[e.target.selectedIndex].text); // Set the selected chart label
+
     setAnnotations([]); // Clear annotations when chart changes
     setSelectedChartLabel(e.target.options[e.target.selectedIndex].text); // Set the selected chart label
 
@@ -68,6 +74,10 @@ const CreateStoryPage = () => {
     { value: 'chart1', label: 'Nostra TVL', data: { apiUrl: 'https://api.llama.fi/protocol/nostra' } },
     { value: 'chart2', label: 'ZKLend TVL', data: { apiUrl: 'https://api.llama.fi/protocol/zklend' } },
     { value: 'chart3', label: 'Ekubo TVL', data: { apiUrl: 'https://api.llama.fi/protocol/ekubo' } },
+    { value: '', label: 'Select a chart', data: null },
+    { value: 'chart1', label: 'Nostra TVL', data: { apiUrl: 'https://api.llama.fi/protocol/nostra' } },
+    { value: 'chart2', label: 'ZKLend TVL', data: { apiUrl: 'https://api.llama.fi/protocol/zklend' } },
+    { value: 'chart3', label: 'Ekubo TVL', data: { apiUrl: 'https://api.llama.fi/protocol/ekubo' } },
   ];
 
   return (
@@ -83,6 +93,8 @@ const CreateStoryPage = () => {
 
         <div className="canvas">
           {selectedChart ? (
+            <PlotComponent userAnnotations={annotations} chartData={chartOptions.find(option => option.value === selectedChart)?.data} selectedChartLabel={selectedChartLabel}/>
+            ) : (
             <PlotComponent userAnnotations={annotations} chartData={chartOptions.find(option => option.value === selectedChart)?.data} selectedChartLabel={selectedChartLabel}/>
             ) : (
             <div style={{ width: '100%', height: '400px', border: '1px dashed #ccc', borderRadius: '5px' }}></div>
