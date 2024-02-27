@@ -15,8 +15,8 @@ function header() {
         </div>
     </Link>
     <div className="text-right text-2xl ">
-      <Link href="/createPost" className="inline-block text- py-2 px-4 hover:bg-emerald-200 transition-colors duration-500 ease-in-out cursor-pointer" >
-        + add
+      <Link href="/createPost" className="inline-block text-white py-2 px-4 bg-emerald-500 hover:bg-emerald-600 rounded-lg shadow-md transition-colors duration-300 ease-in-out cursor-pointer" >
+        + Create Data Story
       </Link>
     </div>
  </div>
