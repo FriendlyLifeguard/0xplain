@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 
-const PostComponent = ({ postId, title, author }) => {
+const ThumbnailComponent = ({ postId, title, author }) => {
   // Assuming postId is a prop to identify which post to navigate to
   return (
     <Link href={`posts/${postId}`}>
@@ -20,4 +20,4 @@ const PostComponent = ({ postId, title, author }) => {
   );
 };
 
-export default PostComponent;
+export default ThumbnailComponent;

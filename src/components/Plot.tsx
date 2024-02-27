@@ -1,6 +1,7 @@
 'use client'
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as Plotly from 'plotly.js-dist-min';
+import Annotation from '../interfaces/PlotInterface'
 
 
 interface TvlsItem {
@@ -28,29 +29,15 @@ interface ProtocolData {
   chainTvls: ChainTvls;
 }
 
-export interface Annotation {
-  x: string;
-  y: number;
-  text: string;
-  showarrow: boolean;
-  arrowhead: number;
-  ax: number;
-  ay: number;
-  bgcolor: string;
-  font: { size: number };
-}
-
-export interface PostComponent {
-  postId: string; 
-  title: string;
-  author: string; 
-}
 
 interface PlotComponentProps {
   userAnnotations: Annotation[];
 }
 
 const PlotComponent = ( {userAnnotations = []}: PlotComponentProps) => {
+
+  const plotDivRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     async function fetchDataAndPlot() {
       const apiUrl = 'https://api.llama.fi/protocol/nostra';
@@ -117,7 +104,9 @@ const PlotComponent = ( {userAnnotations = []}: PlotComponentProps) => {
         annotations: annotations,
     };
 
-        Plotly.newPlot('myDiv', plotData, layout);
+    if (plotDivRef.current) {
+      Plotly.newPlot(plotDivRef.current, plotData, layout);
+    }
       } catch (error) {
         console.error('Error fetching or plotting data:', error);
       }
@@ -132,7 +121,10 @@ const PlotComponent = ( {userAnnotations = []}: PlotComponentProps) => {
     return entry?.totalLiquidityUSD;
   }
 
-  return <div id="myDiv" />;
+  return (
+  <div id="myDiv" ref={plotDivRef} />
+  
+  );
 };
 
 export default PlotComponent;
