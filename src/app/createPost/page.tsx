@@ -8,14 +8,20 @@ import * as Plotly from 'plotly.js-dist-min'; // Make sure to import Plotly
 type ChartOption = {
   value: string;
   label: string;
+  data: any; // Data or configuration for the chart
 };
 
 const CreateStoryPage = () => {
   const [selectedChart, setSelectedChart] = useState<string>('');
   const [annotations, setAnnotations] = useState<Annotation[]>([]);
+  const [selectedChartLabel, setSelectedChartLabel] = useState<string>('');
+
 
   const handleChartChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedChart(e.target.value);
+    setAnnotations([]); // Clear annotations when chart changes
+    setSelectedChartLabel(e.target.options[e.target.selectedIndex].text); // Set the selected chart label
+
   };
 
   const handleSubmitAnnotation = (e: React.FormEvent<HTMLFormElement>) => {
@@ -53,10 +59,10 @@ const CreateStoryPage = () => {
 
   // Define chart options
   const chartOptions: ChartOption[] = [
-    { value: '', label: 'Select a chart' },
-    { value: 'chart1', label: 'Chart 1' },
-    { value: 'chart2', label: 'Chart 2' },
-    { value: 'chart3', label: 'Chart 3' },
+    { value: '', label: 'Select a chart', data: null },
+    { value: 'chart1', label: 'Nostra TVL', data: { apiUrl: 'https://api.llama.fi/protocol/nostra' } },
+    { value: 'chart2', label: 'ZKLend TVL', data: { apiUrl: 'https://api.llama.fi/protocol/zklend' } },
+    { value: 'chart3', label: 'Ekubo TVL', data: { apiUrl: 'https://api.llama.fi/protocol/ekubo' } },
   ];
 
   return (
@@ -72,8 +78,8 @@ const CreateStoryPage = () => {
 
         <div className="canvas">
           {selectedChart ? (
-            <PlotComponent userAnnotations={annotations} chartData={selectedChart} />
-          ) : (
+            <PlotComponent userAnnotations={annotations} chartData={chartOptions.find(option => option.value === selectedChart)?.data} selectedChartLabel={selectedChartLabel}/>
+            ) : (
             <div style={{ width: '100%', height: '400px', border: '1px dashed #ccc', borderRadius: '5px' }}></div>
           )}
         </div>

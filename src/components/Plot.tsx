@@ -32,15 +32,19 @@ interface ProtocolData {
 
 interface PlotComponentProps {
   userAnnotations: Annotation[];
+  chartData: any;
+  selectedChartLabel: string;
 }
 
-const PlotComponent = ( {userAnnotations = []}: PlotComponentProps) => {
+const PlotComponent = ( {userAnnotations = [], chartData, selectedChartLabel}: PlotComponentProps) => {
 
   const plotDivRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!chartData) return; // If chartData is not provided, do nothing
+
     async function fetchDataAndPlot() {
-      const apiUrl = 'https://api.llama.fi/protocol/nostra';
+      const apiUrl =  chartData.apiUrl;
 
       try {
         const response = await fetch(apiUrl);
@@ -89,7 +93,7 @@ const PlotComponent = ( {userAnnotations = []}: PlotComponentProps) => {
     ];
 
       const layout = {
-        title: 'TVL Over Time: Nostra',
+        title: selectedChartLabel,
         xaxis: { title: 'Date' },
         yaxis: { title: 'Total Value Locked (USD)' },
         width: 800,
@@ -113,7 +117,7 @@ const PlotComponent = ( {userAnnotations = []}: PlotComponentProps) => {
     }
 
     fetchDataAndPlot();
-  }, [userAnnotations]);
+  }, [userAnnotations, chartData, selectedChartLabel]);
 
   function findTvlForDate(targetDate: string, tvlData: TvlsItem[]): number | undefined {
     const targetTimestamp = new Date(targetDate).getTime() / 1000;
