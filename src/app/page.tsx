@@ -8,7 +8,7 @@ import WalletBar from "../components/Walletbar"
 import dynamic from "next/dynamic";
 
 const ConnectModal = dynamic(
-  () => import ("../components/walletBar"), { ssr: false }
+  () => import ("../components/WalletBar"), { ssr: false }
 );
 
 
