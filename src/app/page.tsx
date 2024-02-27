@@ -133,7 +133,7 @@ export default function Home() {
     {/* Column 3 */}
     <div className="flex flex-col items-start ml-10">
       <div className="mt-5">
-        <div className="text-2xl font-bold"> &#128640; Top Volume </div>
+        <div className="text-2xl font-bold"> &#128640; Daily Active Users </div>
       </div>
       {/* Adjusted Flexbox Container for Starknet */}
       <div className="mt-5 flex flex-row items-center justify-start">
