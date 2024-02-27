@@ -16,6 +16,8 @@ const CreateStoryPage = () => {
   const [selectedChart, setSelectedChart] = useState<string>('');
   const [annotations, setAnnotations] = useState<Annotation[]>([]);
   const [selectedChartLabel, setSelectedChartLabel] = useState<string>('');
+  const [selectedProject, setSelectedProject] = useState('');
+  const [selectedMetric, setSelectedMetric] = useState('');
 
   const router = useRouter();
 
@@ -97,6 +99,19 @@ const CreateStoryPage = () => {
     { value: 'chart1', label: 'Nostra TVL', data: { apiUrl: 'https://api.llama.fi/protocol/nostra' } },
     { value: 'chart2', label: 'ZKLend TVL', data: { apiUrl: 'https://api.llama.fi/protocol/zklend' } },
     { value: 'chart3', label: 'Ekubo TVL', data: { apiUrl: 'https://api.llama.fi/protocol/ekubo' } },
+    { value: 'chart4', label: 'mySwap TVL', data: { apiUrl: 'https://api.llama.fi/protocol/myswap-cl' } },
+    { value: 'chart5', label: 'StarkDeFI TVL', data: { apiUrl: 'https://api.llama.fi/protocol/StarkDeFI' } },
+    { value: 'chart6', label: '10KSwap TVL', data: { apiUrl: 'https://api.llama.fi/protocol/10KSwap' } },
+    { value: 'chart7', label: 'SithSwap TVL', data: { apiUrl: 'https://api.llama.fi/protocol/SithSwap' } },
+    { value: 'chart8', label: 'Hashstack TVL', data: { apiUrl: 'https://api.llama.fi/protocol/hashstack' } },
+    { value: 'chart9', label: 'Carmine Options TVL', data: { apiUrl: 'https://api.llama.fi/protocol/carmine-options' } },
+    { value: 'chart10', label: 'AstroSwap AMM TVL', data: { apiUrl: 'https://api.llama.fi/protocol/AstroSwap-aMM' } },
+    { value: 'chart11', label: 'ProtossDex TVL', data: { apiUrl: 'https://api.llama.fi/protocol/ProtossDex' } },
+    { value: 'chart12', label: 'Starksport TVL', data: { apiUrl: 'https://api.llama.fi/protocol/Starksport' } },
+    { value: 'chart13', label: 'xfam.tech TVL', data: { apiUrl: 'https://api.llama.fi/protocol/xfam.tech' } },
+    { value: 'chart14', label: 'CairoFi TVL', data: { apiUrl: 'https://api.llama.fi/protocol/CairoFi' } },
+    { value: 'chart15', label: 'JediSwap TVL', data: { apiUrl: 'https://api.llama.fi/protocol/JediSwap' } },
+
   ];
 
   return (
