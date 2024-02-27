@@ -16,7 +16,11 @@
     "plotly.js-dist-min": "^2.29.1",
     "react": "^18",
     "react-dom": "^18",
-    "stream-browserify": "^3.0.0"
+    "stream-browserify": "^3.0.0",
+    "get-starknet": "^3.0.1",
+    "get-starknet-core": "^3.2.0",
+    "@starknet-react/chains": "^0.1.0",
+    "@starknet-react/core": "^2.1.1"
   },
   "devDependencies": {
     "@types/node": "^20",

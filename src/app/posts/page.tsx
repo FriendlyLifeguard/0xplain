@@ -10,12 +10,12 @@ export default function StarknetTVLPage() {
       <img src="/starknet1.jpeg" alt="Starknet Image" className="w-1/2 mb-4" />
       
 
-      {/* Discussions Subsection */}
+
       <div className="w-full max-w-2xl">
         <h2 className="text-3xl font-semibold mb-2">Discuss</h2>
 
            
-        {/* Example Comment 1 with Replies */}
+
         <div className="border-2 p-4 mb-4">
           <p className="font-semibold">User1 <span className="text-sm text-gray-500">- 2 hours ago</span></p>
           <p>Interesting insights on Starknet's TVL trends.</p>
@@ -26,7 +26,7 @@ export default function StarknetTVLPage() {
           </div>
         </div>
 
-        {/* Example Comment 2 with Replies */}
+
         <div className="border-2 p-4 mb-4">
           <p className="font-semibold">User2 <span className="text-sm text-gray-500">- 3 hours ago</span></p>
           <p>Does anyone think the TVL will continue to rise?</p>

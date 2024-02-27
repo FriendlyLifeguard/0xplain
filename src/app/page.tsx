@@ -4,6 +4,14 @@ import Link from "next/link"
 import Header from "../components/Header"
 import ThumbnailComponent from "../components/ThumbnailComponent";
 import React, { useState, useEffect } from 'react';
+import WalletBar from "../components/Walletbar"
+import dynamic from "next/dynamic";
+
+const ConnectModal = dynamic(
+  () => import ("../components/walletBar"), { ssr: false }
+);
+
+
 
 const userAnnotations = [
   {
@@ -37,6 +45,9 @@ export default function Home() {
   return (
     <>
     <Header/>
+    <div className="flex justify-end px-8 ">
+    <WalletBar/>
+    </div> 
     <div className="text-2xl font-bold mt-10 ml-10">
  
 </div>
@@ -89,8 +100,8 @@ export default function Home() {
       </div>
     </div>
 
-    {/* Column 2 */}
-    {/* Duplicate the structure of Column 1 with different content as needed */}
+
+
     <div className="flex flex-col items-start ml-10">
       <div className="mt-5">
         <div className="text-2xl font-bold"> &#128640; Top Volume </div>
@@ -182,15 +193,18 @@ export default function Home() {
   <div className="w-full flex flex-col items-center justify-center mt-10">
     <div className="text-4xl font-bold mb-4">Posts</div>
     {annotationSubmitted && (
-    <div className="mb-6"> 
+    <div className="mb-6 relative"> 
     <Link href={'/posts/${postId}'}>
       <ThumbnailComponent postId="1" title="Nostr TVL" author="0xPlain" />
+      <button className="absolute top-0 right-0 m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Mint
+      </button>
     </Link>
     </div>
     )}
 
     <Link href={`posts/2`}>
-    <div className="mb-6">
+    <div className="mb-6 relative">
       <div className="block">
         <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
           <div className="p-8">
@@ -198,6 +212,9 @@ export default function Home() {
             <div className="text-sm text-gray-600 ml-auto">Author: 0xPlain </div>
             <div className="mt-4"></div>
               <img src="/Static1.png" alt="Chart" width={600} height={400} style={{ width: '100%', height: 'auto' }} />
+              <button className="absolute top-0 right-0 m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Mint
+              </button>
           </div>
         </div>
       </div>
@@ -205,7 +222,7 @@ export default function Home() {
     </Link>
 
     <Link href={'posts/3'}>
-    <div className="mb-6"> 
+    <div className="mb-6 relative"> 
     <div className="block">
         <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
           <div className="p-8">
@@ -213,6 +230,9 @@ export default function Home() {
             <div className="text-sm text-gray-600 ml-auto">Author: 0xPlain </div>
             <div className="mt-4"></div>
               <img src="/Static2.png" alt="Chart" width={600} height={400} style={{ width: '100%', height: 'auto' }} />
+              <button className="absolute top-0 right-0 m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Mint
+              </button>
           </div>
         </div>
       </div>

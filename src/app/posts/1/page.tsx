@@ -53,7 +53,12 @@ const PostPage = () => {
     <div>
       <Header/>
       <h1 className="text-2xl font-bold text-left ml-4">{post.title}</h1>
+      <div className="flex items-center space-x-2">
       <h2 className="text-sm text-left ml-4 text-gray-600">By {post.author}</h2>
+      <button className="text-xs bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
+        Tip
+      </button>
+      </div>
       <div className="flex justify-center">
       {chartImageData && (
         <div>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { StarknetProvider } from "../components/starknet-provider";
  
 // These styles apply to every route in the application
 import '../../styles/globals.css'
@@ -15,7 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <StarknetProvider>
       <body>{children}</body>
+      </StarknetProvider>
     </html>
   )
 }
